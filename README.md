@@ -1,5 +1,5 @@
 # wsjayagrosir
-web service jayagrosir sebagai server
+web service **Perusahaan Jayagrosir** sebagai **server**, pastikan database telah terimport.
 
 ## xml, wsdl
 jika pada server service tidak terupdate, bisa dilakukan penghapusan cache  
