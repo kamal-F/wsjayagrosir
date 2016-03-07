@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.example.org/jayaservice/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="jayaservice"
+	targetNamespace="http://www.example.org/jayaservice/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.example.org/jayaservice/">
+			<xsd:element name="infojaya">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="in" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="infojayaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="out" type="xsd:string" minOccurs="0"
+							maxOccurs="1" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+
+
+
+
+
+			<xsd:element name="getbarangbekas">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="in" type="xsd:int" minOccurs="1"
+							maxOccurs="1"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getbarangbekasResponse">
+                <xsd:complexType>
+                	<xsd:sequence>
+                		<xsd:element name="out"
+                			maxOccurs="unbounded" minOccurs="0" type="tns:outType">
+                        </xsd:element>
+                	</xsd:sequence>
+                </xsd:complexType>
+      </xsd:element>
+      
+        
+      <xsd:complexType name="outType">
+      	<xsd:sequence>
+      		<xsd:element name="desk" type="xsd:string"></xsd:element>
+      		<xsd:element name="balance" type="xsd:string"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="infojayaRequest">
+    <wsdl:part element="tns:infojaya" name="a"/>
+  </wsdl:message>
+  <wsdl:message name="infojayaResponse">
+    <wsdl:part element="tns:infojayaResponse" name="b"/>
+  </wsdl:message>
+  <wsdl:message name="getbarangbekasRequest">
+  	<wsdl:part name="c" element="tns:getbarangbekas"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getbarangbekasResponse">
+  	<wsdl:part name="d" element="tns:getbarangbekasResponse"></wsdl:part>
+  </wsdl:message>
+
+  
+  
+  
+ 
+  <wsdl:portType name="jayaservice">
+    <wsdl:operation name="infojaya">
+      <wsdl:input message="tns:infojayaRequest"/>
+      <wsdl:output message="tns:infojayaResponse"/>
+    </wsdl:operation>
+
+    
+    <wsdl:operation name="getbarangbekas">
+    	<wsdl:input message="tns:getbarangbekasRequest"></wsdl:input>
+    	<wsdl:output message="tns:getbarangbekasResponse"></wsdl:output>
+    </wsdl:operation></wsdl:portType>
+
+  <wsdl:binding name="jayaserviceSOAP" type="tns:jayaservice">
+
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="infojaya">
+
+  		<soap:operation
+  			soapAction="http://www.example.org/jayaservice/infojaya" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getbarangbekas">
+
+  		<soap:operation
+  			soapAction="http://www.example.org/jayaservice/getbarangbekas" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="jayaservice">
+    <wsdl:port binding="tns:jayaserviceSOAP" name="jayaserviceSOAP">
+      <soap:address location="http://localhost/latihan/jayagrosir/jayaservice.php"/>
+    </wsdl:port>
+    
+  </wsdl:service>
+</wsdl:definitions>
