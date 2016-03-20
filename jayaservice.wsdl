@@ -51,7 +51,26 @@
       		<xsd:element name="balance" type="xsd:string"></xsd:element>
       	</xsd:sequence>
       </xsd:complexType>
-    </xsd:schema>
+      <xsd:element name="addbarangbekas">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="desk" type="xsd:string"></xsd:element>
+      			<xsd:element name="balance" type="xsd:int"></xsd:element>
+      			<xsd:element name="vendor" type="xsd:int"></xsd:element>
+      			<xsd:element name="tipe" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addbarangbekasResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+		</xsd:schema>
   </wsdl:types>
   <wsdl:message name="infojayaRequest">
     <wsdl:part element="tns:infojaya" name="a"/>
@@ -66,10 +85,16 @@
   	<wsdl:part name="d" element="tns:getbarangbekasResponse"></wsdl:part>
   </wsdl:message>
 
-  
-  
-  
- 
+
+
+
+
+  <wsdl:message name="addbarangbekasRequest">
+  	<wsdl:part name="e" element="tns:addbarangbekas"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addbarangbekasResponse">
+  	<wsdl:part name="f" element="tns:addbarangbekasResponse"></wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="jayaservice">
     <wsdl:operation name="infojaya">
       <wsdl:input message="tns:infojayaRequest"/>
@@ -80,6 +105,10 @@
     <wsdl:operation name="getbarangbekas">
     	<wsdl:input message="tns:getbarangbekasRequest"></wsdl:input>
     	<wsdl:output message="tns:getbarangbekasResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addbarangbekas">
+    	<wsdl:input message="tns:addbarangbekasRequest"></wsdl:input>
+    	<wsdl:output message="tns:addbarangbekasResponse"></wsdl:output>
     </wsdl:operation></wsdl:portType>
 
   <wsdl:binding name="jayaserviceSOAP" type="tns:jayaservice">
@@ -103,6 +132,19 @@
 
   		<soap:operation
   			soapAction="http://www.example.org/jayaservice/getbarangbekas" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="addbarangbekas">
+
+  		<soap:operation
+  			soapAction="http://www.example.org/jayaservice/addbarangbekas" />
   		<wsdl:input>
 
   			<soap:body use="literal" />
